@@ -41,9 +41,18 @@
   <triggers class="vector"/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
+    <hudson.tasks.Shell>
+      <command>[ -f build.xml ] &amp;&amp; echo &quot;build.xml exists&quot; || wget https://raw.github.com/mattmcclean/companyNews/master/etc/deploy/build.xml
+if [ -d lib/tomcat ]; then
+  echo &quot;Tomcat dir exists&quot;
+else
+  wget http://apache.fastbull.org/tomcat/tomcat-6/v6.0.35/bin/apache-tomcat-6.0.35.tar.gz
+  mkdir -p lib/tomcat &amp;&amp; cd lib/tomcat &amp;&amp; tar zxvf ../../apache-tomcat-6.0.35.tar.gz
+fi</command>
+    </hudson.tasks.Shell>
     <hudson.tasks.Ant>
       <targets>deploy</targets>
-      <antName><%= node[:jenkins][:ant][:name] %></antName>
+      <antName>(Default)</antName>
     </hudson.tasks.Ant>
   </builders>
   <publishers/>

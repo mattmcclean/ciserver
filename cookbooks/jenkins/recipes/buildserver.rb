@@ -56,21 +56,16 @@ jenkins_cli "groovy /tmp/setup_tools.groovy"
 # Setup git on machine
 package "git"
 
-jenkins_submit_job "build-and-test-#{node[:jenkins][:project][:artifactId]}" do
-  source "build-test-project-config.xml"
-end
-
-jenkins_submit_job "release-#{node[:jenkins][:project][:artifactId]}" do
-  source "release-project-config.xml"
+jenkins_submit_job "build-and-release-#{node[:jenkins][:project][:artifactId]}" do
+  source "build-and-release-project-config.xml"
 end
 
 jenkins_submit_job "deploy-#{node[:jenkins][:project][:artifactId]}" do
   source "deploy-project-config.xml"
 end
-
   
 upload_jar_to_nexus "prevayler.jar" do
-  source "https://github.com/downloads/mattmcclean/tw-devops-assignment/prevayler-2.3.jar"
+  source "https://github.com/downloads/mattmcclean/companyNews/prevayler-2.3.jar"
   user "jenkins"
   group "jenkins"
   groupId "org.prevayler"

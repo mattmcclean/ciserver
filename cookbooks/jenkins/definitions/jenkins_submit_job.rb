@@ -38,8 +38,8 @@ define :jenkins_submit_job, :enable => true do
 
   if params[:enable]
     execute "submitting job #{params[:name]}" do
-      command "#{node['jenkins']['cli_cmd']} create-job #{params[:name]} < #{source_file} && touch #{node[:jenkins][:rundir]}/submitted-jobs/#{params[:name]}"
-      creates "#{node[:jenkins][:rundir]}/submitted-jobs/#{params[:name]}"
+      command "#{node[:jenkins][:cli_cmd]} create-job #{params[:name]} < #{source_file}"
+      not_if do ::File.exists?("#{node[:jenkins][:homedir]}/.jenkins/jobs/#{params[:name]}") end
     end
   end
 end

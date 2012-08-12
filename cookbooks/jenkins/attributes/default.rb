@@ -38,7 +38,6 @@ default["jenkins"]["cli_cmd"] = "/usr/bin/java -jar #{node[:jenkins][:cli_jar]} 
 default["jenkins"]["git"]["name"] = "mattmcclean"
 default["jenkins"]["git"]["email"] = "matt.mcclean@gmail.com"
 
-default["jenkins"]["project"]["git_url"] = "https://github.com/mattmcclean/tw-devops-assignment"
-default["jenkins"]["project"]["pom"] = "companyNews/pom.xml"
+default["jenkins"]["project"]["git_url"] = "https://github.com/mattmcclean/companyNews"
 default["jenkins"]["project"]["groupId"] = "com.example"
 default["jenkins"]["project"]["artifactId"] = "companyNews"
