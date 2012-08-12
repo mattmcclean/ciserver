@@ -1,0 +1,8 @@
+{
+  "id": "tomcat",
+  "password": "tomcat",
+  "roles": [
+    "manager",
+    "admin"
+  ]
+}

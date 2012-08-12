@@ -1,0 +1,1 @@
+export MAVEN_HOME=/usr/local/maven
