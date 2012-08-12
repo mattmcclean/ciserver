@@ -66,9 +66,9 @@ Vagrant::Config.run do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "etc/recipes/cookbooks"
-    chef.roles_path = "etc/recipes/roles"
-    chef.data_bags_path = "etc/recipes/data_bags"
+    chef.cookbooks_path = "cookbooks"
+    chef.roles_path = "roles"
+    chef.data_bags_path = "data_bags"
 #    chef.add_role "nexus"
     chef.add_role "buildserver"
   end
