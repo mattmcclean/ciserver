@@ -71,6 +71,7 @@ Vagrant::Config.run do |config|
     chef.data_bags_path = "data_bags"
     chef.add_role "nexus"
     chef.add_role "buildserver"
+    chef.add_role "prodserver"
   end
 
   # Enable provisioning with chef server, specifying the chef server URL,

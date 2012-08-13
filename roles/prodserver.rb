@@ -5,6 +5,6 @@ override_attributes(
   :tomcat => {
     :port => "8082",
     :ssl_port => "8444",
-    :ajp_port => "8010" }
+    :ajp_port => "8010"
   }
 )
