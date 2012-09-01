@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>app.name</name>
+          <description>App Name</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string><%= node[:jenkins][:project][:artifactId] %></string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>version.number</name>
+          <description>Version Number</description>
+          <defaultValue>1.0</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>package.type</name>
+          <description>Package Type</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>war</string>
+              <string>ear</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>[ -f build.xml ] &amp;&amp; echo &quot;build.xml exists&quot; || wget https://raw.github.com/mattmcclean/companyNews/master/etc/deploy/build.xml
+if [ -d lib/tomcat ]; then
+  echo &quot;Tomcat dir exists&quot;
+else
+  wget http://mirror.nohup.it/apache/tomcat/tomcat-7/v7.0.29/bin/apache-tomcat-7.0.29.tar.gz
+  mkdir -p lib/tomcat &amp;&amp; cd lib/tomcat &amp;&amp; tar zxvf ../../apache-tomcat-7.0.29.tar.gz
+fi</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Ant>
+      <targets>deploy</targets>
+      <antName>(Default)</antName>
+    </hudson.tasks.Ant>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
